@@ -1,5 +1,6 @@
 import cors from '@fastify/cors';
 import Fastify from 'fastify';
+import habitsRoute from "./routes/habits.js";
 
 const fastify = Fastify({
     logger: true,
@@ -14,6 +15,9 @@ await fastify.register(cors, {
 fastify.get('/', async () => {
     return { hello: 'world' };
 });
+
+fastify.register(habitsRoute, { prefix: '/habits' });
+
 
 // Run the server!
 try {
